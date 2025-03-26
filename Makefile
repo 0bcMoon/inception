@@ -2,6 +2,9 @@
 all: up
 
 up:
-	@docker-compose -f ./docker-compose.yml up -d
+	docker-compose up -d
 down:
 	docker-compose down
+clean: down
+	# docker stop $(shell docker ps -a -q)
+	docker system prune -a --volumes

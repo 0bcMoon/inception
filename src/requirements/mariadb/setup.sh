@@ -18,6 +18,7 @@ mysql --user=root -e "CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$D
 mysql --user=root -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%';"
 mysql --user=root -e "FLUSH PRIVILEGES;"
 mysql --user=root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$DB_ROOT_PASS' ;"
+mysql --user=root -e "FLUSH PRIVILEGES;"
 
 mysqladmin -u root -p"$DB_ROOT_PASS" shutdown
 

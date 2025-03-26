@@ -10,13 +10,14 @@ RUN apk add  --no-cache php83 \
                         php83-fileinfo \
                         php83-mbstring \
                         php83-mysqli \
-                        wget
+                        wget \
+                        mariadb-client 
+
 
 
 COPY ./setup.sh /setup.sh
 
 COPY ./config.sh /config.sh
-
 
 RUN sh /setup.sh
 

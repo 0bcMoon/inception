@@ -7,6 +7,13 @@ services:
       - .env
     networks:
       - inception
+    ports:
+      - "8080:8080"
+    restart: always
+    volumes:
+      - wordpress:/var/www/html:rwo
+    depends_on: 
+      - wordpress
 
   mariadb:
     container_name: mariadb
@@ -15,8 +22,9 @@ services:
       - .env
     networks:
       - inception
-    ports:
-      - "8080:3306"
+    restart: always
+    volumes:
+      - mariadb:/var/lib/mysql
 
   wordpress:
     container_name: wordpress
@@ -27,7 +35,25 @@ services:
       - mariadb
     networks:
       - inception
-
+    restart: always
+    volumes:
+      - wordpress:/var/www/html:rwo
 networks:
   inception:
     name: inception
+
+volumes:
+  mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/hibenouk/goinfre/mariadb
+
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/hibenouk/goinfre/wordpress
+

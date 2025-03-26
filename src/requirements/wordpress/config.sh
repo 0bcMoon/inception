@@ -1,6 +1,5 @@
 #!/bin/sh
 
-set -ex
 
 cd /var/www/html
 
@@ -8,13 +7,15 @@ sed -i "s/database_name_here/$DB_NAME/1"   wp-config-sample.php
 
 sed -i "s/username_here/$DB_USER/1"        wp-config-sample.php
 
-sed -i "s/password_here/$DB_PWD/1"         wp-config-sample.php
+sed -i "s/password_here/$DB_PASS/1"         wp-config-sample.php
 
 sed -i "s/localhost/mariadb/1"             wp-config-sample.php
 
 
 
-sed -i 's/listen = 127.0.0.1:9000/listen = 9000/' /etc/php83/php-fpm.d/www.conf
+sed -i 's/listen = 127.0.0.1:9000/listen = 9000/1' /etc/php83/php-fpm.d/www.conf
+
+mysqladmin ping -u $DB_USER -p$DB_PASS --silent --wait 
 
 mv wp-config-sample.php wp-config.php
 
