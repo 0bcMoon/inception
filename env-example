@@ -1,0 +1,14 @@
+DB_NAME=wordpress_db
+DB_USER=wordpress_user
+DB_PASS=password
+DB_ROOT_PASS=password
+
+DOMAIN_NAME=example.com
+WP_TITLE=inception
+WP_ADMIN_USR=admin
+WP_ADMIN_PASS=password
+WP_ADMIN_EMAIL=hicham@mail.com
+
+WP_USER=hicham
+WP_PASS=wordpass
+

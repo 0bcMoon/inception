@@ -1,2 +1,33 @@
 
+services:
+  nginx:
+    container_name: nginx
+    build: ./src/requirements/nginx/
+    env_file: 
+      - .env
+    networks:
+      - inception
 
+  mariadb:
+    container_name: mariadb
+    build: ./src/requirements/mariadb/
+    env_file: 
+      - .env
+    networks:
+      - inception
+    ports:
+      - "8080:3306"
+
+  wordpress:
+    container_name: wordpress
+    build: ./src/requirements/wordpress/
+    env_file:
+      - .env
+    depends_on: 
+      - mariadb
+    networks:
+      - inception
+
+networks:
+  inception:
+    name: inception
