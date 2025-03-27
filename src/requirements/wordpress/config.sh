@@ -15,7 +15,7 @@ sed -i "s/localhost/mariadb/1"             wp-config-sample.php
 
 sed -i 's/listen = 127.0.0.1:9000/listen = 9000/1' /etc/php83/php-fpm.d/www.conf
 
-mysqladmin ping -u $DB_USER -p$DB_PASS --silent --wait 
+mysqladmin ping -u $DB_USER -p$DB_PASS -h mariadb --silent --wait 
 
 mv wp-config-sample.php wp-config.php
 

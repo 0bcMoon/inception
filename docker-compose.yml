@@ -8,10 +8,10 @@ services:
     networks:
       - inception
     ports:
-      - "8080:8080"
+      - "8080:443"
     restart: always
     volumes:
-      - wordpress:/var/www/html:rwo
+      - wordpress:/var/www/html
     depends_on: 
       - wordpress
 

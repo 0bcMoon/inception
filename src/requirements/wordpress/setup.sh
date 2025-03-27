@@ -16,7 +16,7 @@ sed -i 's/memory_limit = 128M/memory_limit = 512M/' /etc/php83/php.ini
 
 wp core download 
 
-chmod 644 /var/www
+chmod 777 /var/www
 
-chmod 644 /var/www/html
+chmod 777 /var/www/html
 
