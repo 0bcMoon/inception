@@ -34,14 +34,18 @@ wp core install --url=$DOMAIN_NAME/\
                 --admin_user=$WP_ADMIN_USER \
                 --admin_password=$WP_ADMIN_PASS \
                 --admin_email=$WP_ADMIN_EMAIL \
-                --skip-email \
+                --skip-email --allow-root
 
-wp user create $WP_USER $WP_EMAIL --role=author --user_pass=$WP_PASS
+wp user create $WP_USER $WP_EMAIL --role=author --user_pass=$WP_PASS --allow-root
 
-wp option update siteurl "$DOMAIN_NAME"
+wp option update siteurl "$DOMAIN_NAME" --allow-root
 
-wp option update home "$DOMAIN_NAME"
+wp option update home "$DOMAIN_NAME" --allow-root
 
-wp theme install twentytwentyfour --activate
+wp theme install twentytwentyfour --activate --allow-root
+
+wp plugin install create-block-theme --activate --allow-root
+
+wp plugin install gutenberg --activate --allow-root
 
 exec php-fpm83 -F
