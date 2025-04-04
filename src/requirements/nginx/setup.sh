@@ -5,10 +5,11 @@ set -ex
 openssl req -x509 -nodes \
         -days 365 -newkey rsa:2048 \
         -keyout /etc/ssl/private/nginx-selfsigned.key \
-        -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=MO/L=KH/O=1337/OU=student/CN=hibenouk.1337.ma"
-
+        -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=MO/L=KH/O=1337/OU=student/CN=$DOMAIN_NAME"
 
 sed -i "s/DOMAIN_NAME/$DOMAIN_NAME www.$DOMAIN_NAME/g" /etc/nginx/nginx.conf
 
-nginx -g 'daemon off;'
+sed -i "s/SITEDIR/$DOMAIN_NAME/g" /etc/nginx/nginx.conf
+
+exec nginx -g 'daemon off;'
 

@@ -1,4 +1,3 @@
-
 FROM alpine:3.20
 
 RUN apk update && apk add nginx openssl
@@ -13,5 +12,4 @@ COPY ./setup.sh /setup.sh
 COPY nginx.conf /etc/nginx/nginx.conf
 
 CMD ["sh", "/setup.sh"]
-
 

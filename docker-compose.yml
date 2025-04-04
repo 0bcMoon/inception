@@ -18,7 +18,7 @@ services:
   mariadb:
     container_name: mariadb
     build: ./src/requirements/mariadb/
-    env_file: 
+    env_file:
       - .env
     networks:
       - inception
@@ -37,7 +37,7 @@ services:
       - inception
     restart: always
     volumes:
-      - wordpress:/var/www/html:rwo
+      - wordpress:/var/www/html
 networks:
   inception:
     name: inception
@@ -48,12 +48,12 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/hibenouk/goinfre/mariadb
+      device: ${HOME}/goinfre/data/mariadb 
 
   wordpress:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/hibenouk/goinfre/wordpress
+      device: ${HOME}/goinfre/data/wordpress  
 
