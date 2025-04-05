@@ -5,14 +5,15 @@ set -x
 sed -i 's/\[mysqld\]/&\nbind-address=0.0.0.0/1' /etc/my.cnf.d/mariadb-server.cnf
 sed -i 's/skip-networking/&=0/' /etc/my.cnf.d/mariadb-server.cnf
 
-# TODO: do it on container build
 
-mysql_install_db --datadir=/var/lib/mysql --skip-test-db --user=mysql --group=mysql
+# mysql_install_db --datadir=/var/lib/mysql --skip-test-db --user=mysql --group=mysql
 mysqld_safe &
 mysqld_pid=$!
+echo "DB: datadir init..."
 
 # Wait for the server to be started, then set up database and accounts
 mysqladmin ping -u root --silent --wait 
+echo "Mariadb is up..."
 
 mysql --user=root -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
 mysql --user=root -e "CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS';"

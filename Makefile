@@ -1,19 +1,19 @@
 
-all: volumes up
+all: up
 
-up:
+up: volumes
 	docker-compose up -d
 down:
 	docker-compose down
-clean: down
-	# docker stop $(shell docker ps -a -q)
-	docker system prune -a --volumes
-
 
 volumes:
-	mkdir -p $(HOME)/goinfre/data/mariadb
-	mkdir -p $(HOME)/goinfre/data/wordpress
+	mkdir -p /home/hibenouk/data/mariadb
+	mkdir -p /home/hibenouk/data/wordpress
 
-# volumes:
-# 	mkdir -p $(HOME)/mariadb
-# 	mkdir -p $(HOME)/wordpress
+.IGNORE:
+fclean: 
+	docker stop $(shell docker ps -a -q)
+	docker rm  -f $(shell docker ps -a -q)
+	docker rmi -f $(shell docker images -a -q)
+	docker volume rm -f $(shell docker volume ls -q)
+	rm -rf /home/hibenouk/data

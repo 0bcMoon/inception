@@ -2,7 +2,6 @@ FROM alpine:3.20
 
 RUN apk update && apk add nginx openssl
 
-
 RUN mkdir -p /run/php
 
 RUN mkdir -p /var/www/html;
