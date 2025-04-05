@@ -8,11 +8,14 @@ services:
       - inception
     ports:
       - "443:443"
+      - "8080:8080" # adminer port
     restart: always
     volumes:
-      - wordpress:/var/www/html
+      - wordpress:/var/www/html/
+      - adminer:/var/www/html/
     depends_on: 
       - wordpress
+      - adminer
 
   mariadb:
     container_name: mariadb
@@ -46,11 +49,21 @@ services:
       - inception
     restart: always
 
+  adminer:
+    container_name: adminer
+    build: ./src/requirements/bonus/adminer
+    env_file:
+      - .env
+    networks:
+      - inception
+    restart: always
+
 networks:
   inception:
     name: inception
 
 volumes:
+
   mariadb:
     driver: local
     driver_opts:
@@ -64,4 +77,11 @@ volumes:
       type: none
       o: bind
       device: /home/hibenouk/data/wordpress  
+
+  adminer:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/hibenouk/data/adminer  
 

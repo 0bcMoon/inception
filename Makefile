@@ -9,6 +9,7 @@ down:
 volumes:
 	mkdir -p /home/hibenouk/data/mariadb
 	mkdir -p /home/hibenouk/data/wordpress
+	mkdir -p /home/hibenouk/data/adminer
 
 .IGNORE:
 fclean: 

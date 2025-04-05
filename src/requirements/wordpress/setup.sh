@@ -5,7 +5,7 @@ set -x
 
 mkdir -p /run/php
 
-mkdir -p /var/www/html
+mkdir -p /var/www/html/wordpress
 
 
 wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -16,19 +16,13 @@ mv wp-cli.phar /usr/local/bin/wp
 
 sed -i 's/memory_limit = 128M/memory_limit = 512M/' /etc/php83/php.ini
 
-cd /var/www/html/
+cd /var/www/html/wordpress
 
-rm -rf $DOMAIN_NAME
-
-mkdir $DOMAIN_NAME
-
-cd $DOMAIN_NAME
+rm -rf *
 
 wp core download 
 
 mv wp-config-sample.php wp-config.php 
-
-
 
 sed -i "s/database_name_here/$DB_NAME/1"   wp-config.php
 
@@ -37,9 +31,6 @@ sed -i "s/username_here/$DB_USER/1"        wp-config.php
 sed -i "s/password_here/$DB_PASS/1"         wp-config.php
 
 sed -i "s/localhost/mariadb/1"             wp-config.php
-
-
-
 
 sed -i 's/listen = 127.0.0.1:9000/listen = 9000/1' /etc/php83/php-fpm.d/www.conf
 
@@ -74,7 +65,7 @@ wp config set WP_REDIS_PASSWORD $REDIS_PASS
 
 wp redis enable
 
-chmod -R 777 /var/www/html/ 
+chmod -R 777 /var/www/html/wordpress
 
 exec php-fpm83 -F
 

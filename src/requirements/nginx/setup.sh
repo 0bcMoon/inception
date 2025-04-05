@@ -9,7 +9,7 @@ openssl req -x509 -nodes \
 
 sed -i "s/DOMAIN_NAME/$DOMAIN_NAME www.$DOMAIN_NAME/g" /etc/nginx/nginx.conf
 
-sed -i "s/SITEDIR/$DOMAIN_NAME/g" /etc/nginx/nginx.conf
+chmod -R 777 /var/www/html
 
 exec nginx -g 'daemon off;'
 

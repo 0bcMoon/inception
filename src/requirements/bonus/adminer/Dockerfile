@@ -13,11 +13,11 @@ RUN apk update && apk add   php83 \
                             php83-redis \
                             php83-tokenizer \
                             php83-ctype \
-                            wget \
-                            mariadb-client 
+                            wget
+
+RUN mkdir -p /var/www/html/adminer
 
 
 COPY ./setup.sh /setup.sh
 
 CMD ["sh", "/setup.sh"]
-
