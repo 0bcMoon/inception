@@ -15,6 +15,7 @@ services:
     depends_on: 
       - wordpress
       - adminer
+      - cadvisor
 
   mariadb:
     container_name: mariadb
@@ -33,6 +34,7 @@ services:
       - .env
     depends_on: 
       - mariadb
+      - redis
     networks:
       - inception
     restart: always
@@ -51,13 +53,35 @@ services:
   adminer:
     container_name: adminer
     build: ./src/requirements/bonus/adminer
-    env_file:
-      - .env
     networks:
       - inception
     restart: always
     volumes:
       - adminer:/var/www/html/adminer
+
+  cadvisor:
+    container_name: cadvisor 
+    build: ./src/requirements/bonus/cadvisor
+    networks:
+      - inception
+    restart: always
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+  ftp:
+    container_name: ftp 
+    build: ./src/requirements/bonus/ftp
+    networks:
+      - inception
+    restart: always
+    env_file:
+    - .env
+    ports:
+      - "21:21"
+    volumes:
+      - wordpress:/var/www/html/wordpress
 
 networks:
   inception:
