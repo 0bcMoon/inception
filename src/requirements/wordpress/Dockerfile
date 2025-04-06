@@ -16,8 +16,13 @@ RUN apk update && apk add   php83 \
                             wget \
                             mariadb-client 
 
+WORKDIR /var/www/html/wordpress
 
 COPY ./setup.sh /setup.sh
+
+COPY ./build.sh /build.sh
+
+RUN sh /build.sh
 
 CMD ["sh", "/setup.sh"]
 

@@ -17,4 +17,4 @@ fclean:
 	docker rm  -f $(shell docker ps -a -q)
 	docker rmi -f $(shell docker images -a -q)
 	docker volume rm -f $(shell docker volume ls -q)
-	rm -rf /home/hibenouk/data
+	sudo rm -rf /home/hibenouk/data

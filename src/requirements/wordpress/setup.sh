@@ -3,27 +3,6 @@
 set -x
 
 
-mkdir -p /run/php
-
-mkdir -p /var/www/html/wordpress
-
-
-wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-
-chmod +x wp-cli.phar
-
-mv wp-cli.phar /usr/local/bin/wp
-
-sed -i 's/memory_limit = 128M/memory_limit = 512M/' /etc/php83/php.ini
-
-cd /var/www/html/wordpress
-
-rm -rf *
-
-wp core download 
-
-mv wp-config-sample.php wp-config.php 
-
 sed -i "s/database_name_here/$DB_NAME/1"   wp-config.php
 
 sed -i "s/username_here/$DB_USER/1"        wp-config.php
@@ -52,7 +31,6 @@ wp option update siteurl "$DOMAIN_NAME"
 
 wp option update home "$DOMAIN_NAME" 
 
-
 wp config set WP_DEBUG 'true'
 
 wp plugin install redis-cache --activate
@@ -65,7 +43,7 @@ wp config set WP_REDIS_PASSWORD $REDIS_PASS
 
 wp redis enable
 
-chmod -R 777 /var/www/html/wordpress
+chmod -R 755 /var/www/html/wordpress
 
 exec php-fpm83 -F
 
