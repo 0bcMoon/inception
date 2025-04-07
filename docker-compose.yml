@@ -86,6 +86,13 @@ services:
     volumes:
       - wordpress:/var/www/html/wordpress
 
+  website:
+    container_name: website 
+    build: ./src/requirements/bonus/website/
+    networks:
+      - inception
+    restart: always
+
 networks:
   inception:
     name: inception

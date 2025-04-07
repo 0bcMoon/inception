@@ -21,11 +21,8 @@ echo "pasv_min_port=21005" >> /etc/vsftpd/vsftpd.conf
 echo "pasv_address=$(hostname -i)" >> /etc/vsftpd/vsftpd.conf
 echo "local_root=/var/www/html/wordpress" >> /etc/vsftpd/vsftpd.conf
 
-
-
 echo "local_enable=YES" >> /etc/vsftpd/vsftpd.conf
 echo "write_enable=YES" >> /etc/vsftpd/vsftpd.conf
 echo "log_ftp_protocol=YES" >> /etc/vsftpd/vsftpd.conf
-# Running This Command "/usr/sbin/vsftpd" make the service run in the foreground
-/usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf
 
+exec /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf
