@@ -27,6 +27,7 @@ services:
     restart: always
     volumes:
       - mariadb:/var/lib/mysql
+
   wordpress:
     container_name: wordpress
     build: ./src/requirements/wordpress/
@@ -80,6 +81,8 @@ services:
     - .env
     ports:
       - "21:21"
+      - "20:20"
+      - "21000-21005:21000-21005"
     volumes:
       - wordpress:/var/www/html/wordpress
 
