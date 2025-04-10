@@ -11,5 +11,4 @@ sed -i "s/DOMAIN_NAME/$DOMAIN_NAME www.$DOMAIN_NAME/g" /etc/nginx/nginx.conf
 
 chmod -R 777 /var/www/html
 
-exec nginx -g 'daemon off;'
-
+exec nginx
