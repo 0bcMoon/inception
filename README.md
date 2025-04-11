@@ -17,11 +17,6 @@
 * [DOCKER VS DOCKER COMPOSE](#docker-vs-docker-compose)
 * [DOCKER VS VIRTUAL MACHINE](#docker-vs-virtual-machine)
 * [DOCKER NETWORKING](#docker-networking)
-* [♻️ LEMP STACK](#lemp)
-    * [NGINX](#nginx)
-    * [MARIADB](#mariadb)
-    * [Wordpress](#wordpress)
-* [Project Flowchart](#flowchart)
 * [Installation](#installation)
 * [Ressources](#ressources)
 
