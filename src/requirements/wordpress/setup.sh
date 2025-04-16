@@ -43,7 +43,7 @@ wp config set WP_REDIS_PASSWORD $REDIS_PASS
 
 wp redis enable
 
-chmod -R 755 /var/www/html/wordpress
+chmod -R 777 /var/www/html/wordpress
 
 exec php-fpm83 -F
 

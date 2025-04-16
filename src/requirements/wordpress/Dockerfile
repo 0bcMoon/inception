@@ -13,6 +13,7 @@ RUN apk update && apk add   php83 \
                             php83-redis \
                             php83-tokenizer \
                             php83-ctype \
+                            php83-zip \
                             wget \
                             mariadb-client 
 

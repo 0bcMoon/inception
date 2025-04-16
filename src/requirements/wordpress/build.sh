@@ -15,9 +15,7 @@ chmod +x wp-cli.phar
 mv wp-cli.phar /usr/local/bin/wp
 
 
-rm -rf *
-
-wp core download 
+wp core download --skip-content --force
 
 mv wp-config-sample.php wp-config.php 
 
