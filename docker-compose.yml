@@ -81,7 +81,6 @@ services:
     - .env
     ports:
       - "21:21"
-      - "20:20"
       - "21000-21005:21000-21005"
     volumes:
       - wordpress:/var/www/html/wordpress

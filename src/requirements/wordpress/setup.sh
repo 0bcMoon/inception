@@ -35,6 +35,8 @@ wp config set WP_DEBUG 'true'
 
 wp plugin install redis-cache --activate
 
+wp theme install twentytwentyfour --activate
+
 wp config set WP_REDIS_HOST 'redis'
 
 wp config set WP_REDIS_PORT '6379'
