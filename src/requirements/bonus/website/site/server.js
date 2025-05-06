@@ -6,8 +6,8 @@ const PORT = 4000;
 const PUBLIC_DIR = process.cwd(); // Serve files from the current directory
 
 const server = http.createServer((req, res) => {
-    let filePath = path.join(PUBLIC_DIR, req.url === '/' ? 'index.html' : req.url);
 
+    let filePath = path.join(PUBLIC_DIR, req.url === '/' ? 'index.html' : req.url);
     fs.stat(filePath, (err, stats) => {
         if (err || !stats.isFile()) {
             res.writeHead(404, { 'Content-Type': 'text/plain' });

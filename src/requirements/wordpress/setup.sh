@@ -27,12 +27,6 @@ wp core install --url=$DOMAIN_NAME/\
 
 wp user create $WP_USER $WP_EMAIL --role=author --user_pass=$WP_PASS 
 
-wp option update siteurl "$DOMAIN_NAME" 
-
-wp option update home "$DOMAIN_NAME" 
-
-wp config set WP_DEBUG 'true'
-
 wp plugin install redis-cache --activate
 
 wp theme install twentytwentyfour --activate
@@ -48,4 +42,3 @@ wp redis enable
 chmod -R 777 /var/www/html/wordpress
 
 exec php-fpm83 -F
-

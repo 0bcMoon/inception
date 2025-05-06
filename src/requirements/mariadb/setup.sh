@@ -23,3 +23,4 @@ mysqladmin -u root -p"$DB_ROOT_PASS" shutdown
 wait $mysqld_pid
 
 exec "mysqld_safe"
+
