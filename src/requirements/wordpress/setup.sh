@@ -2,7 +2,6 @@
 
 set -x
 
-
 sed -i "s/database_name_here/$DB_NAME/1"   wp-config.php
 
 sed -i "s/username_here/$DB_USER/1"        wp-config.php

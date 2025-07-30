@@ -7,8 +7,6 @@ openssl req -x509 -nodes \
         -keyout /etc/ssl/private/nginx-selfsigned.key \
         -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=MO/L=KH/O=1337/OU=student/CN=$DOMAIN_NAME"
 
-sed -i "s/DOMAIN_NAME/$DOMAIN_NAME www.$DOMAIN_NAME/g" /etc/nginx/nginx.conf
-
 chmod -R 777 /var/www/html
 
 exec nginx
