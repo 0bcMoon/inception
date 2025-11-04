@@ -18,3 +18,6 @@ fclean:
 	docker rmi -f $(shell docker images -a -q)
 	docker volume rm -f $(shell docker volume ls -q)
 	sudo rm -rf /home/hibenouk/data
+purge: 
+	docker stop $(shell docker ps -a -q)
+	docker system prune -a --volumes
