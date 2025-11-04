@@ -10,6 +10,7 @@ RUN chmod -R 744 /run/mysqld
 
 RUN mysql_install_db --datadir=/var/lib/mysql --skip-test-db --user=mysql --group=mysql
 
+
 COPY ./setup.sh /setup.sh
 
 CMD ["sh", "/setup.sh"]

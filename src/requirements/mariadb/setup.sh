@@ -5,20 +5,21 @@ set -x
 sed -i 's/\[mysqld\]/&\nbind-address=0.0.0.0/1' /etc/my.cnf.d/mariadb-server.cnf
 sed -i 's/skip-networking/&=0/' /etc/my.cnf.d/mariadb-server.cnf
 
+mariadb-install-db --datadir=/var/lib/mysql --skip-test-db --user=mysql --group=mysql
 
-mysqld_safe &
+mariadbd-safe &
 
 mysqld_pid=$!
 
-mysqladmin ping -u root --silent --wait 
+mariadb-admin ping -u root --silent --wait 
 
-mysql --user=root -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
-mysql --user=root -e "CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS';"
-mysql --user=root -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%';"
-mysql --user=root -e "FLUSH PRIVILEGES;"
-mysql --user=root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$DB_ROOT_PASS' ;"
+mariadb --user=root -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
+mariadb --user=root -e "CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS';"
+mariadb --user=root -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%';"
+mariadb --user=root -e "FLUSH PRIVILEGES;"
+mariadb --user=root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$DB_ROOT_PASS' ;"
 
-mysqladmin -u root -p"$DB_ROOT_PASS" shutdown
+mariadb-admin -u root -p"$DB_ROOT_PASS" shutdown
 
 wait $mysqld_pid
 
