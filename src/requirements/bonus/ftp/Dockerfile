@@ -1,6 +1,6 @@
 FROM alpine:3.21
 
-RUN apk update && apk add vsftpd shadow
+RUN apk add --no-cache vsftpd shadow
 
 COPY ./setup.sh /setup.sh
 

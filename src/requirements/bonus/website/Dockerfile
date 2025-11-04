@@ -1,6 +1,6 @@
 FROM alpine:3.21
 
-RUN apk update && apk  add python3
+RUN apk --no-cache add python3
 
 WORKDIR /app
 

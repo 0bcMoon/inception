@@ -1,8 +1,7 @@
 
 FROM alpine:3.21
 
-
-RUN apk update && apk add redis
+RUN apk add --no-cache redis
 
 COPY ./setup.sh /setup.sh
 
