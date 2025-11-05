@@ -1,16 +1,17 @@
 #!/bin/sh
-
 set -x
 
-sed -i "s/database_name_here/$DB_NAME/1"   wp-config.php
+wp core download --skip-content --force
 
-sed -i "s/username_here/$DB_USER/1"        wp-config.php
+mv wp-config-sample.php wp-config.php 
 
-sed -i "s/password_here/$DB_PASS/1"         wp-config.php
-
-sed -i "s/localhost/mariadb/1"             wp-config.php
+sed -i "s/database_name_here/$DB_NAME/1" wp-config.php
+sed -i "s/username_here/$DB_USER/1"      wp-config.php
+sed -i "s/password_here/$DB_PASS/1"      wp-config.php
+sed -i "s/localhost/mariadb/1"           wp-config.php
 
 sed -i 's/listen = 127.0.0.1:9000/listen = 9000/1' /etc/php83/php-fpm.d/www.conf
+
 
 mariadb-admin ping -u $DB_USER -p$DB_PASS -h mariadb --silent --wait  # wait for mariadb to be ready for connections
 
@@ -36,6 +37,6 @@ wp config set WP_REDIS_PASSWORD $REDIS_PASS
 
 wp redis enable
 
-chmod -R 777 /var/www/html/wordpress
+chmod -R 755 /var/www/html/wordpress
 
 exec php-fpm83 -F

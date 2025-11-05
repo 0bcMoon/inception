@@ -2,11 +2,10 @@ FROM alpine:3.21
 
 RUN apk update && apk add nginx openssl
 
-RUN mkdir -p /run/php
+RUN mkdir -p /run/php && \
+        mkdir -p /var/www/html;
 
-RUN mkdir -p /var/www/html;
-
-COPY ./setup.sh /setup.sh
+COPY setup.sh /setup.sh
 
 COPY nginx.conf /etc/nginx/nginx.conf
 

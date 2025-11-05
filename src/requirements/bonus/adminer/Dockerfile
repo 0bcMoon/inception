@@ -15,9 +15,8 @@ RUN apk update && apk add   php83 \
                             php83-ctype \
                             wget
 
-RUN mkdir -p /var/www/html/adminer
-
-RUN chmod -R 755 /var/www/html/adminer
+RUN mkdir -p /var/www/html/adminer && \
+            chmod -R 755 /var/www/html/adminer
 
 COPY ./setup.sh /setup.sh
 
