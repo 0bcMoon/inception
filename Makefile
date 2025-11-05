@@ -7,9 +7,9 @@ down:
 	docker-compose down
 
 volumes:
-	mkdir -p /home/hibenouk/data/mariadb
-	mkdir -p /home/hibenouk/data/wordpress
-	mkdir -p /home/hibenouk/data/adminer
+	mkdir -p ${HOME}/data/mariadb
+	mkdir -p ${HOME}/data/wordpress
+	mkdir -p ${HOME}/data/adminer
 
 .IGNORE:
 fclean: 

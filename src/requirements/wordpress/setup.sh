@@ -14,8 +14,6 @@ sed -i 's/listen = 127.0.0.1:9000/listen = 9000/1' /etc/php83/php-fpm.d/www.conf
 
 mariadb-admin ping -u $DB_USER -p$DB_PASS -h mariadb --silent --wait  # wait for mariadb to be ready for connections
 
-sleep 5
-
 wp core install --url=$DOMAIN_NAME/\
                 --title=$WP_TITLE \
                 --admin_user=$WP_ADMIN_USER \
