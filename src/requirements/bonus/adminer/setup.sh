@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+set -xe
 
 wget https://www.adminer.org/latest.php -O /var/www/html/adminer/index.php
 

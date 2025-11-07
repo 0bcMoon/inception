@@ -1,5 +1,5 @@
 #!/bin/sh
-set -x
+set -xe
 
 wp core download --skip-content --force
 

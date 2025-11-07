@@ -1,6 +1,6 @@
 #/bin/sh
 
-set -x
+set -xe
 
 sed -i 's/^bind /#bind /' /etc/redis.conf 
 
