@@ -74,7 +74,6 @@ services:
       - .env
     ports:
       - "21:21"
-      - "20:20"
       - "21000-21010:21000-21010"
     volumes:
       - wordpress:/srv/ftp/wordpress
