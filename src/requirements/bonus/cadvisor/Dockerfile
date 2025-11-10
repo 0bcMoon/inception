@@ -7,4 +7,4 @@ RUN wget -O cadvisor https://github.com/google/cadvisor/releases/download/v0.52.
 
 RUN chmod +x ./cadvisor
 
-CMD ["./cadvisor", "--port=8000"]
+CMD ["./cadvisor", "--port=8080"]
