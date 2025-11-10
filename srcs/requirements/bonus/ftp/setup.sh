@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -xe
+set -x
 
 adduser -D -h /srv/ftp/wordpress -s /sbin/nologin $FTP_USER
 

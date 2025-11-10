@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -xe
+set -x
 
 sed -i 's/\[mysqld\]/&\nbind-address=0.0.0.0/1' /etc/my.cnf.d/mariadb-server.cnf
 sed -i 's/skip-networking/&=0/' /etc/my.cnf.d/mariadb-server.cnf

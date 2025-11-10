@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -xe
+set -x
 
 sed -i 's/memory_limit = 128M/memory_limit = 512M/' /etc/php83/php.ini
 

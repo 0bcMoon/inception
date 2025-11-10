@@ -1,23 +1,18 @@
+CONFIG_FILE=srcs/docker-compose.yml
 
 all: up
 
 up: volumes
-	docker-compose up -d
+	docker-compose -f  ${CONFIG_FILE} up -d
+
 down:
-	docker-compose down
+	docker-compose -f  ${CONFIG_FILE} down
 
 volumes:
 	mkdir -p ${HOME}/data/mariadb
 	mkdir -p ${HOME}/data/wordpress
 	mkdir -p ${HOME}/data/adminer
 
-.IGNORE:
-fclean: 
-	docker stop $(shell docker ps -a -q)
-	docker rm  -f $(shell docker ps -a -q)
-	docker rmi -f $(shell docker images -a -q)
-	docker volume rm -f $(shell docker volume ls -q)
-	sudo rm -rf /home/hibenouk/data
 purge: 
 	docker stop $(shell docker ps -a -q)
 	docker system prune -a --volumes

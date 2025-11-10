@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -xe
+set -x
 
 openssl req -x509 -nodes \
         -days 90 -newkey rsa:2048 \
