@@ -1,7 +1,7 @@
 services:
   nginx:
     container_name: nginx
-    build: ./src/requirements/nginx/
+    build: ./requirements/nginx/
     env_file: 
       - .env
     networks:
@@ -15,7 +15,7 @@ services:
 
   mariadb:
     container_name: mariadb
-    build: ./src/requirements/mariadb/
+    build: ./requirements/mariadb/
     env_file:
       - .env
     networks:
@@ -26,7 +26,7 @@ services:
 
   wordpress:
     container_name: wordpress
-    build: ./src/requirements/wordpress/
+    build: ./requirements/wordpress/
     env_file:
       - .env
     networks:
@@ -37,7 +37,7 @@ services:
 
   redis:
     container_name: redis
-    build: ./src/requirements/bonus/redis/
+    build: ./requirements/bonus/redis/
     env_file:
       - .env
     networks:
@@ -46,7 +46,7 @@ services:
 
   adminer:
     container_name: adminer
-    build: ./src/requirements/bonus/adminer
+    build: ./requirements/bonus/adminer
     networks:
       - inception
     restart: always
@@ -55,7 +55,7 @@ services:
 
   cadvisor:
     container_name: cadvisor 
-    build: ./src/requirements/bonus/cadvisor
+    build: ./requirements/bonus/cadvisor
     networks:
       - inception
     restart: always
@@ -66,7 +66,7 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
   ftp:
     container_name: ftp 
-    build: ./src/requirements/bonus/ftp
+    build: ./requirements/bonus/ftp
     networks:
       - inception
     restart: always
@@ -80,7 +80,7 @@ services:
 
   website:
     container_name: website 
-    build: ./src/requirements/bonus/website/
+    build: ./requirements/bonus/website/
     networks:
       - inception
     restart: always
