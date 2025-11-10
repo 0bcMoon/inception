@@ -12,4 +12,3 @@ chmod +x wp-cli.phar
 
 mv wp-cli.phar /usr/local/bin/wp
 
-

@@ -8,6 +8,10 @@ up: volumes
 down:
 	docker-compose -f  ${CONFIG_FILE} down
 
+rebuild: down
+	docker-compose -f  ${CONFIG_FILE} up -d --build
+
+
 volumes:
 	mkdir -p ${HOME}/data/mariadb
 	mkdir -p ${HOME}/data/wordpress
