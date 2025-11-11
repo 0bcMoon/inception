@@ -87,6 +87,12 @@ services:
     restart: always
     volumes:
       - adminer:/var/www/html/adminer
+    healthcheck:
+      test: ["CMD", "pidof", "php-fpm83"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 3s
   cadvisor:
     container_name: cadvisor 
     build: ./requirements/bonus/cadvisor
