@@ -1,6 +1,7 @@
 services:
   nginx:
     container_name: nginx
+    image: nginx:42
     build: ./requirements/nginx/
     env_file: 
       - .env
@@ -15,9 +16,16 @@ services:
     depends_on:
       wordpress:
         condition: service_healthy
+      cadvisor:
+        condition: service_healthy
+      adminer:
+        condition: service_healthy
+      website:
+        condition: service_healthy
 
   mariadb:
     container_name: mariadb
+    image: mariadb:42
     build: ./requirements/mariadb/
     env_file:
       - .env
@@ -27,7 +35,7 @@ services:
     volumes:
       - mariadb:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mariadb-admin", "ping", "-uroot", "-p$DB_ROOT_PASS"]
+      test: ["CMD-SHELL", "mariadb-admin ping -uroot -p$DB_ROOT_PASS"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -35,6 +43,7 @@ services:
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress/
+    image: wordpress:42
     env_file:
       - .env
     networks:
@@ -56,6 +65,7 @@ services:
 
   redis:
     container_name: redis
+    image: redis:42
     build: ./requirements/bonus/redis/
     env_file:
       - .env
@@ -70,6 +80,7 @@ services:
 
   adminer:
     container_name: adminer
+    image: adminer:42
     build: ./requirements/bonus/adminer
     networks:
       - inception
@@ -82,6 +93,12 @@ services:
     networks:
       - inception
     restart: always
+    healthcheck:
+      test: ["CMD", "pidof", "cadvisor"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 3s
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
@@ -89,6 +106,7 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
   ftp:
     container_name: ftp 
+    image: ftp:42
     build: ./requirements/bonus/ftp
     networks:
       - inception
@@ -103,10 +121,18 @@ services:
 
   website:
     container_name: website 
+    image: website:42
     build: ./requirements/bonus/website/
     networks:
       - inception
+    healthcheck:
+      test: ["CMD", "pidof", "python3"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 3s
     restart: always
+
 
 networks:
   inception:

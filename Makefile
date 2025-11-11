@@ -1,4 +1,5 @@
-CONFIG_FILE=srcs/docker-compose.yml
+
+CONFIG_FILE = srcs/docker-compose.yml
 
 all: up
 

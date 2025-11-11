@@ -4,6 +4,6 @@ RUN apk update && apk  add python3
 
 WORKDIR /app
 
-COPY ./site/ .
+COPY site/ .
 
 CMD ["python3", "-m", "http.server", "4000"]
